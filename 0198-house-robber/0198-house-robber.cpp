@@ -10,8 +10,6 @@ public:
         {
             return dp[index];
         }
-        
-        
         int notTake = 0 + solve(nums,index+1,n,dp);
         int Take = nums[index] + solve(nums,index+2,n,dp);
         
@@ -19,7 +17,18 @@ public:
     }
     int rob(vector<int>& nums) {
         int n = nums.size();
-        vector<int>dp(n+1,-1);
-        return solve(nums,0,n,dp);
+        vector<int>dp(n,0);
+        dp[0]=nums[0];
+        for(int i=1;i<n;i++)
+        {
+             int notTake = 0+dp[i-1];
+             int Take = nums[i];
+             if(i>1)
+             Take = nums[i] + dp[i-2];
+             
+             dp[i] = max(Take,notTake);
+        }
+        
+        return dp[n-1];
     }
 };
