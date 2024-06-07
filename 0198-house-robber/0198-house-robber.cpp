@@ -17,18 +17,22 @@ public:
     }
     int rob(vector<int>& nums) {
         int n = nums.size();
-        vector<int>dp(n,0);
-        dp[0]=nums[0];
+        int prev2=0;
+        int prev1=nums[0];
+        int curri;
+        
         for(int i=1;i<n;i++)
         {
-             int notTake = 0+dp[i-1];
+             int notTake = 0+prev1;
              int Take = nums[i];
              if(i>1)
-             Take = nums[i] + dp[i-2];
+             Take = nums[i] + prev2;
              
-             dp[i] = max(Take,notTake);
+             curri = max(Take,notTake);
+            prev2=prev1;
+            prev1=curri;
         }
         
-        return dp[n-1];
+        return prev1;
     }
 };
