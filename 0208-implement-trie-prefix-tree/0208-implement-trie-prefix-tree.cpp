@@ -1,5 +1,3 @@
-#include <string>
-using namespace std;
 
 struct Node {
     Node *links[26] = {nullptr};
