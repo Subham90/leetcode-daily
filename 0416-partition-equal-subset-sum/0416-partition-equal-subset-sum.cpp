@@ -35,18 +35,41 @@ public:
         return dp[index][target]=Take|NotTake;
     }
     bool canPartition(vector<int>& nums) {
-        int sum = 0;
+        int target = 0;
         int n = nums.size();
         for(auto &it: nums)
         {
-            sum+=it;
+            target+=it;
         }
-        if(sum%2==1)
+        if(target&1)
         {
             return false;
         }
-        int target = sum/2;
-        vector<vector<int>>dp(n+1,vector<int>(target+1,-1));
-        return solve(n-1,target,nums,dp);
+        target = target/2;
+        vector<vector<bool>>dp(n+1,vector<bool>(target+1,false));
+        
+        for(int i=0;i<n;i++) // BC
+        {
+            dp[i][0] = true;
+        }
+        if(nums[0] <= target)
+        {
+            dp[0][nums[0]] = true; // BC
+        }
+        
+        for(int i=1;i<n;i++)
+        {
+            for(int tar=0;tar<=target;tar++)
+            {
+                int NotTake = dp[i-1][tar];
+                int Take = false;
+                if(tar-nums[i] >= 0)
+                {
+                    Take = dp[i-1][tar-nums[i]];
+                }
+                dp[i][tar]=Take||NotTake;
+            }
+        }
+        return dp[n-1][target];
     }
 };
