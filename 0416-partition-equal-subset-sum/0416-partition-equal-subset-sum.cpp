@@ -46,30 +46,27 @@ public:
             return false;
         }
         target = target/2;
-        vector<vector<bool>>dp(n+1,vector<bool>(target+1,false));
+        vector<bool>prev(target+1,false);
+        vector<bool>curr(target+1,false);
         
-        for(int i=0;i<n;i++) // BC
-        {
-            dp[i][0] = true;
-        }
-        if(nums[0] <= target)
-        {
-            dp[0][nums[0]] = true; // BC
-        }
+       prev[0]=curr[0]=true;
+       if(nums[0] <= target)
+       prev[nums[0]]=0;
         
         for(int i=1;i<n;i++)
         {
-            for(int tar=0;tar<=target;tar++)
+            for(int tar=1;tar<=target;tar++)
             {
-                int NotTake = dp[i-1][tar];
+                int NotTake = prev[tar];
                 int Take = false;
                 if(tar-nums[i] >= 0)
                 {
-                    Take = dp[i-1][tar-nums[i]];
+                    Take = prev[tar-nums[i]];
                 }
-                dp[i][tar]=Take||NotTake;
+                curr[tar]=Take||NotTake;
             }
+            prev = curr;
         }
-        return dp[n-1][target];
+        return prev[target];
     }
 };
