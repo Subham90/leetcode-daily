@@ -1,21 +1,28 @@
 class Solution {
 public:
     vector<int> relativeSortArray(vector<int>& arr1, vector<int>& arr2) {
-        map<int, int> countMap;
-        for (const int& num : arr1) {
-            countMap[num]++;
+        vector<int>count(1001,0);
+        int n = arr1.size();
+        for(int i=0;i<n;i++)
+        {
+            count[arr1[i]]++;
         }
-        vector<int> ans;
-        for (const int& num : arr2) {
-            while (countMap[num] > 0) {
-                ans.push_back(num);
-                countMap[num]--;
+        vector<int>ans;
+        for(int j=0;j<arr2.size();j++)
+        {
+            while(count[arr2[j]] > 0)
+            {
+                ans.push_back(arr2[j]);
+                count[arr2[j]]--;
             }
         }
-        for (const auto& pair : countMap) {
-            while (pair.second > 0) {
-                ans.push_back(pair.first);
-                countMap[pair.first]--;
+        
+        for(int i=0;i<count.size();i++)
+        {
+            while(count[i] > 0)
+            {
+                ans.push_back(i);
+                count[i]--;
             }
         }
         return ans;
