@@ -33,9 +33,9 @@ public:
          
          for(int index=n-1;index>=0;index--)
          {
-             for(int flag=0;flag<=1;flag++)
+             for(int flag=1;flag>=0;flag--)
              {
-                 for(int day=0;day<3;day++)
+                 for(int day=1;day<=2;day++)
                  {
                     if(flag == 0)// means we can buy
                     {
