@@ -26,11 +26,37 @@ public:
           
         }
     }
+    
+    
     int maxProfit(vector<int>& prices) {
-        int day = 2;
-        int n = prices.size();
-        bool flag=0;
-        vector<vector<vector<int>>>dp(n,vector<vector<int>>(2,vector<int>(3,-1)));
-        return solve(0,flag,prices,day,n,dp);
+        int n = prices.size();        vector<vector<vector<int>>>dp(n+1,vector<vector<int>>(2,vector<int>(3,0)));
+         
+         for(int index=n-1;index>=0;index--)
+         {
+             for(int flag=0;flag<=1;flag++)
+             {
+                 for(int day=0;day<3;day++)
+                 {
+                    if(flag == 0)// means we can buy
+                    {
+                        int buy = -prices[index] + dp[index+1][1][day];
+                        int notBuy = dp[index+1][0][day];
+                        dp[index][flag][day]=max(buy,notBuy);
+                    }
+                    else
+                    {
+                        int sell=-1e8;
+                        if(day-1>=0)
+                        {
+                        sell = +prices[index] + dp[index+1][0][day-1]; 
+                        }//denotes a complete transaction 
+                        int notSell = dp[index+1][1][day];
+                        dp[index][flag][day]=max(sell,notSell);
+
+                    }
+                 }
+             }
+         }
+     return dp[0][0][2];                                 
     }
 };
