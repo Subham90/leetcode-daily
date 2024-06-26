@@ -6,7 +6,7 @@ class Solution {
         for(int i=0;i<size;i++)
         {
             auto it = prerequisites[i];
-            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(it[0]);
         }
         
         vector<int>indegree(n,0);
@@ -48,7 +48,7 @@ public:
         solve(numCourses,prerequisites,ans);
         if(ans.size() == numCourses)
         {
-            reverse(ans.begin(),ans.end());
+            // reverse(ans.begin(),ans.end());
             return ans;
         }
         else
