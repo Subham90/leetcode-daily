@@ -25,14 +25,8 @@ public:
         {
             if(prev!=NULL and nextl!=NULL)
             {
-                if(curr->val > prev->val and curr->val > nextl->val)
-                {
-                    v1.push_back(i);
-                }
-            }
-            if(prev!=NULL and nextl!=NULL)
-            {
-                if(curr->val < prev->val and curr->val < nextl->val)
+                if(curr->val > prev->val and curr->val > nextl->val
+                || curr->val < prev->val and curr->val < nextl->val)
                 {
                     v1.push_back(i);
                 }
