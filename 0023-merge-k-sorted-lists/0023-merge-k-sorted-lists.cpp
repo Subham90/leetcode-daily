@@ -20,9 +20,9 @@ public:
             {
                 pq.push({lists[i]->val,lists[i]});
             }
-        }
+        } // n*logk
         
-        while(!pq.empty())
+        while(!pq.empty()) // k*3logk
         {
             auto it = pq.top();
             pq.pop();
