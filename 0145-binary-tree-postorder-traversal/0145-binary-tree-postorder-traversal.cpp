@@ -22,7 +22,7 @@ public:
         while(!st1.empty())
         {
             TreeNode* newroot = st1.top();
-            st2.push(newroot);
+            ans.push_back(newroot->val);
             st1.pop();
             if(newroot->left!=NULL)
             {
@@ -33,12 +33,12 @@ public:
                 st1.push(newroot->right);
             }
         }
-        
-        while(!st2.empty())
-        {
-            ans.push_back(st2.top()->val);
-            st2.pop();
-        }
+        reverse(ans.begin(),ans.end());
+        // while(!st2.empty())
+        // {
+        //     ans.push_back(st2.top()->val);
+        //     st2.pop();
+        // }
         return ans;
     }
 };
