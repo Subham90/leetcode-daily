@@ -1,7 +1,7 @@
 class Solution {
 public:
-    std::vector<int> frequencySort(std::vector<int>& nums) {
-        std::unordered_map<int, int> map;
+    vector<int> frequencySort(vector<int>& nums) {
+        unordered_map<int, int> map;
         for (int num : nums) {
             map[num]++;
         }
