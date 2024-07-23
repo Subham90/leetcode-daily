@@ -10,9 +10,13 @@ public:
         while (m > 0) {
             if (m & 1) {
                 ans *= x;
+                m--;
             }
+            else
+            {
             x *= x;
-            m >>= 1;  // Equivalent to m = m / 2
+            m >>= 1;
+            }// Equivalent to m = m / 2
         }
         return ans;
     }
