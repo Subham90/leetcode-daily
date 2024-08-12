@@ -52,6 +52,7 @@ class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
         int f1 = first(nums,target);
+        if(f1==-1)return {-1,-1};
         int f2 = last(nums,target);
         return {f1,f2};
     }
